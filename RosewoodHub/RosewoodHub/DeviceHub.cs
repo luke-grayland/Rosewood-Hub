@@ -13,8 +13,7 @@ public class DeviceHub(ILogger<DeviceHub> logger) : Hub
     public async Task SendCommand(string deviceId, string command)
     {
         Console.WriteLine($"Command received from {deviceId}: {command}");
-        
-        await Clients.Groups(deviceId).SendAsync("ReceiveCommand", command);
+        await Clients.All.SendAsync("ReceiveCommand", command);
     }
 
     //Called when device sends data
